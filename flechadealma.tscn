@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://c5ocxqxjyo1ap"]
+
+[ext_resource type="Script" uid="uid://cxsm2wahcs2xr" path="res://flechadealma.gd" id="1_fcw5g"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sil0y"]
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_color = Color(0, 1, 1, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_fcw5g"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_s2deq"]
+radius = 0.15054432
+
+[node name="flechadealma" type="Area3D" unique_id=501159630]
+script = ExtResource("1_fcw5g")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1479852254]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_sil0y")
+mesh = SubResource("SphereMesh_fcw5g")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1367413852]
+shape = SubResource("SphereShape3D_s2deq")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

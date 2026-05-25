@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://ca1yrkljburqb"
+path="res://.godot/imported/ceramic_jar_open.wav-1e4c9ce1148623f73a8a46c24220ffbc.sample"
+
+[deps]
+
+source_file="res://Sounds pack/400 Sounds Pack/Materials/ceramic_jar_open.wav"
+dest_files=["res://.godot/imported/ceramic_jar_open.wav-1e4c9ce1148623f73a8a46c24220ffbc.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

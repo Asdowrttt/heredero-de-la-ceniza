@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bra2c7wkv6lwq"
+path="res://.godot/imported/xylophone_negative_long.wav-68dd3cba683599e3b76c9f61e6330e53.sample"
+
+[deps]
+
+source_file="res://Sounds pack/400 Sounds Pack/Musical Effects/xylophone_negative_long.wav"
+dest_files=["res://.godot/imported/xylophone_negative_long.wav-68dd3cba683599e3b76c9f61e6330e53.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://ccine0unrnl57"
+path="res://.godot/imported/match_xylophone_5.wav-699fae249ef65b796362d1e22eb9419b.sample"
+
+[deps]
+
+source_file="res://Sounds pack/400 Sounds Pack/Match Three/match_xylophone_5.wav"
+dest_files=["res://.godot/imported/match_xylophone_5.wav-699fae249ef65b796362d1e22eb9419b.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

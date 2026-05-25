@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://c42cigtssvr16"
+path="res://.godot/imported/foley_footstep_carpet_1.wav-e8773a0e20e57aff109cf2ab03cdb168.sample"
+
+[deps]
+
+source_file="res://Sounds pack/400 Sounds Pack/Footsteps/foley_footstep_carpet_1.wav"
+dest_files=["res://.godot/imported/foley_footstep_carpet_1.wav-e8773a0e20e57aff109cf2ab03cdb168.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

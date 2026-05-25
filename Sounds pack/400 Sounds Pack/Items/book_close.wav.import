@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cq451lpspt430"
+path="res://.godot/imported/book_close.wav-a983ca1caebde4b4b86fbf5f7418d804.sample"
+
+[deps]
+
+source_file="res://Sounds pack/400 Sounds Pack/Items/book_close.wav"
+dest_files=["res://.godot/imported/book_close.wav-a983ca1caebde4b4b86fbf5f7418d804.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

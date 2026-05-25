@@ -1,0 +1,79 @@
+[gd_scene format=3 uid="uid://dey1cq1vqwevl"]
+
+[ext_resource type="PackedScene" uid="uid://cpep77i6xefdq" path="res://jugador.tscn" id="1_6ba58"]
+[ext_resource type="Script" uid="uid://dbmuio42g2kxt" path="res://camara_shake.gd" id="2_2hh7m"]
+[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="3_5ckkb"]
+[ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="3_aou4a"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="4_5ckkb"]
+[ext_resource type="PackedScene" uid="uid://bxp4ncpbxp7x5" path="res://enemigo.tscn" id="6_5ckkb"]
+[ext_resource type="Script" uid="uid://cmqkdjot0c8cm" path="res://generador_enemigos.gd" id="7_2hh7m"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_otwa2"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_aou4a"]
+sky_material = SubResource("ProceduralSkyMaterial_otwa2")
+
+[sub_resource type="Environment" id="Environment_5ckkb"]
+background_mode = 2
+sky = SubResource("Sky_aou4a")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="Resource" id="Resource_2hh7m"]
+script = ExtResource("4_5ckkb")
+
+[node name="Node3D" type="Node3D" unique_id=271675217]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1714319521]
+environment = SubResource("Environment_5ckkb")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=818000391]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1040745911]
+use_collision = true
+size = Vector3(30, 1, 30)
+
+[node name="Jugador" parent="." unique_id=331168578 groups=["enemigo"] instance=ExtResource("1_6ba58")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.046452522, 1.5453204, -0.02537918)
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1805332923]
+physics_interpolation_mode = 1
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0.046452522, 11.5453205, 7.974621)
+top_level = true
+current = true
+script = ExtResource("2_2hh7m")
+
+[node name="PhantomCameraHost" type="Node" parent="Camera3D" unique_id=1984939876]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("3_5ckkb")
+metadata/_custom_type_script = "uid://bd046eokvcnu2"
+
+[node name="PhantomCamera3D" type="Node3D" parent="." unique_id=202134485 node_paths=PackedStringArray("follow_target")]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0.046452522, 11.5453205, 7.974621)
+top_level = true
+script = ExtResource("3_aou4a")
+priority = 10
+follow_mode = 2
+follow_target = NodePath("../Jugador")
+tween_resource = SubResource("Resource_2hh7m")
+follow_offset = Vector3(0, 10, 8)
+align_transform_with_view = Callable()
+align_position_with_view = Callable()
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="Enemigo" parent="." unique_id=147644729 instance=ExtResource("6_5ckkb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.342694, 1.53513, 14.037333)
+
+[node name="GeneradorEnemigos" type="Node3D" parent="." unique_id=618409338 groups=["generador"]]
+script = ExtResource("7_2hh7m")
+
+[node name="Timer" type="Timer" parent="GeneradorEnemigos" unique_id=2024985440]
+wait_time = 2.0
+autostart = true
+
+[connection signal="timeout" from="GeneradorEnemigos/Timer" to="GeneradorEnemigos" method="_on_timer_timeout"]

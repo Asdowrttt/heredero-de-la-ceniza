@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://kkuvv70eggn0"
+path="res://.godot/imported/sword_light.wav-89b5e974a6ecd65d7fee8a64647d9f96.sample"
+
+[deps]
+
+source_file="res://Sounds pack/400 Sounds Pack/Weapons/sword_light.wav"
+dest_files=["res://.godot/imported/sword_light.wav-89b5e974a6ecd65d7fee8a64647d9f96.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://0mosviw5v0u"
+path="res://.godot/imported/sword_slice.wav-c184798e179debd2db89d49e42ba9409.sample"
+
+[deps]
+
+source_file="res://Sounds pack/400 Sounds Pack/Weapons/sword_slice.wav"
+dest_files=["res://.godot/imported/sword_slice.wav-c184798e179debd2db89d49e42ba9409.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

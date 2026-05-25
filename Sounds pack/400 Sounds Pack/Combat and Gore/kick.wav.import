@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cc6m773wrvxi6"
+path="res://.godot/imported/kick.wav-dc44e604ac1336871d3d7117ff627dc7.sample"
+
+[deps]
+
+source_file="res://Sounds pack/400 Sounds Pack/Combat and Gore/kick.wav"
+dest_files=["res://.godot/imported/kick.wav-dc44e604ac1336871d3d7117ff627dc7.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bsgkv1cyot4nx"
+path="res://.godot/imported/lock_quick.wav-e3cc06ab9353f7e6c4a00d3ab994c172.sample"
+
+[deps]
+
+source_file="res://Sounds pack/400 Sounds Pack/Environment/lock_quick.wav"
+dest_files=["res://.godot/imported/lock_quick.wav-e3cc06ab9353f7e6c4a00d3ab994c172.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

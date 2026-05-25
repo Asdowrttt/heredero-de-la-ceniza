@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b03tpq52n4n5y"
+path="res://.godot/imported/broom_sweep_1.wav-114d85f6db95f607b4f6c061b593a51c.sample"
+
+[deps]
+
+source_file="res://Sounds pack/400 Sounds Pack/Items/broom_sweep_1.wav"
+dest_files=["res://.godot/imported/broom_sweep_1.wav-114d85f6db95f607b4f6c061b593a51c.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

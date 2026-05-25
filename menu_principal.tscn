@@ -1,0 +1,135 @@
+[gd_scene format=3 uid="uid://d2ev5trie0inv"]
+
+[ext_resource type="Script" uid="uid://2ktp7r3clcd3" path="res://menu_principal.gd" id="1_gmcsc"]
+[ext_resource type="Texture2D" uid="uid://clmcyy5nrosrs" path="res://assets/kenney_fantasy-ui-borders/PNG/Default/Border/Gemini_Generated_Image_ez0nhvez0nhvez0n.png" id="2_gmcsc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gmcsc"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yxm4i"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b574n"]
+bg_color = Color(0.7019608, 0.59607846, 0.06666667, 0.06666667)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ul6ys"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_611wp"]
+bg_color = Color(0.6, 0.6, 0.6, 0.047058824)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xpioy"]
+bg_color = Color(0.7019608, 0.59607846, 0.06666667, 0.06666667)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ns3he"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kni6g"]
+bg_color = Color(0.7019608, 0.59607846, 0.06666667, 0.06666667)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fa1tu"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nx6e2"]
+bg_color = Color(0.7019608, 0.59607846, 0.06666667, 0.06666667)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a6518"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dcvsf"]
+bg_color = Color(0.7019608, 0.59607846, 0.06666667, 0.06666667)
+
+[node name="MenuPrincipal" type="Control" unique_id=19523703]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gmcsc")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=458805036]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 6.0
+offset_right = 143.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_gmcsc")
+expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=400066786]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -742.0
+offset_top = -228.0
+offset_right = -370.0
+offset_bottom = 348.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 8
+
+[node name="BotonInicio" type="Button" parent="VBoxContainer" unique_id=1410911843]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8745098, 0.8745098, 0.8745098, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_normal_color = Color(1, 1, 1, 0)
+theme_override_font_sizes/font_size = 33
+theme_override_styles/normal = SubResource("StyleBoxFlat_gmcsc")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_yxm4i")
+theme_override_styles/hover = SubResource("StyleBoxFlat_b574n")
+text = "
+"
+
+[node name="BotonInstrucciones" type="Button" parent="VBoxContainer" unique_id=1104021569]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_ul6ys")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_611wp")
+theme_override_styles/hover = SubResource("StyleBoxFlat_xpioy")
+text = "
+
+"
+
+[node name="BotonCreadores" type="Button" parent="VBoxContainer" unique_id=1796210259]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_ns3he")
+theme_override_styles/hover = SubResource("StyleBoxFlat_kni6g")
+toggle_mode = true
+text = "
+"
+
+[node name="BotonAjustes" type="Button" parent="VBoxContainer" unique_id=1800328707]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_fa1tu")
+theme_override_styles/hover = SubResource("StyleBoxFlat_nx6e2")
+text = "
+"
+
+[node name="BotonSalir" type="Button" parent="VBoxContainer" unique_id=631071117]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_a6518")
+theme_override_styles/hover = SubResource("StyleBoxFlat_dcvsf")
+
+[node name="TextoRecord" type="Label" parent="." unique_id=316155664]
+layout_mode = 0
+offset_left = 782.0
+offset_top = 355.0
+offset_right = 1066.0
+offset_bottom = 449.0
+
+[connection signal="pressed" from="VBoxContainer/BotonInicio" to="." method="_on_boton_jugar_pressed"]
+[connection signal="pressed" from="VBoxContainer/BotonSalir" to="." method="_on_boton_salir_pressed"]

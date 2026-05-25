@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bemy1e8e1umd1"
+path="res://.godot/imported/white_noise_long.wav-53b1198c85f4f16891ca42ba372bd578.sample"
+
+[deps]
+
+source_file="res://Sounds pack/400 Sounds Pack/Other/white_noise_long.wav"
+dest_files=["res://.godot/imported/white_noise_long.wav-53b1198c85f4f16891ca42ba372bd578.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://cuwgdny5aqwww"]
+
+[ext_resource type="Script" uid="uid://cs1fhw20ypy7s" path="res://explosion.gd" id="1_q7epf"]
+[ext_resource type="AudioStream" uid="uid://t3pgeqjih5uj" path="res://Sounds pack/magic_impact.wav" id="2_vxas0"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vxas0"]
+direction = Vector3(180, 0, 0)
+spread = 180.0
+initial_velocity_min = 8.0
+initial_velocity_max = 8.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j4sxf"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_m5xho"]
+material = SubResource("StandardMaterial3D_j4sxf")
+size = Vector3(0.2, 0.2, 0.2)
+
+[node name="Explosion" type="Node3D" unique_id=1319245797]
+script = ExtResource("1_q7epf")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=207246367]
+emitting = false
+amount = 30
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_vxas0")
+draw_pass_1 = SubResource("BoxMesh_m5xho")
+
+[node name="SonidoExplosion" type="AudioStreamPlayer3D" parent="." unique_id=1531815395]
+stream = ExtResource("2_vxas0")
+volume_db = -5.0
+autoplay = true
