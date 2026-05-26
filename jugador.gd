@@ -63,6 +63,7 @@ var opciones_actuales = []
 @onready var texto_habilidades = $HUD/MenuPausa/HBoxContainer/ColumnaHabilidades/TextoHabilidades
 @onready var pantalla_nivel = $HUD/PantallaSubirNivel
 @onready var barra_vida = $HUD/BarraVida
+@onready var texto_vida = $HUD/BarraVida/TextoVida
 @onready var barra_xp = $HUD/BarraXP
 @onready var texto_curaciones = $HUD/UI_Estus/TextoCuraciones
 @onready var cooldown_estus = $HUD/UI_Estus/CooldownEstus
@@ -79,10 +80,17 @@ var opciones_actuales = []
 ]
 
 # --- NODOS VISUALES DEL JUGADOR ---
-@onready var anim = $ModeloJugador/AnimationPlayer
+# 1. Agregamos las referencias a los 3 modelos
+@onready var modelo_mago = $ModeloMago
+@onready var modelo_caballero = $ModeloCaballero
+@onready var modelo_tanque = $ModeloTanque
+
+# 2. Volvemos el AnimationPlayer y el PuntoDisparo variables vacías, se llenarán en _ready
+var anim : AnimationPlayer
+var punto_disparo : Node3D
+
 @onready var escudo_visual = $EscudoVisual
 @onready var brillo_dash = $BrilloDash
-@onready var punto_disparo = $ModeloJugador/Skeleton3D/BoneAttachment3D/PuntoDisparo # Asumiendo que metiste el PuntoDisparo al hueso de la mano
 
 # --- ESCENAS EXTERNAS ---
 var jefe_scene = preload("res://jefe.tscn")
@@ -110,7 +118,17 @@ var mazo_habilidades = [
 	{"id": "stat_xp", "nombre": "Serpiente Plateada", "desc": "Ganas +10% más experiencia.", "tipo": "estadistica", "adquirida": false},
 	{"id": "stat_oro", "nombre": "Moneda de Oro", "desc": "Ganas +15% más oro.", "tipo": "estadistica", "adquirida": false},
 	{"id": "stat_maldicion", "nombre": "Ojo de la Muerte", "desc": "Enemigos pegan +50%, doble de puntos.", "tipo": "estadistica", "adquirida": false},
-	{"id": "stat_revive", "nombre": "Anillo de Sacrificio", "desc": "Revives al 15% de vida una sola vez.", "tipo": "estadistica", "adquirida": false}
+	{"id": "stat_revive", "nombre": "Anillo de Sacrificio", "desc": "Revives al 15% de vida una sola vez.", "tipo": "estadistica", "adquirida": false},
+	# --- HABILIDADES ESPADACHÍN ---
+	{"id": "corte_iai", "nombre": "Corte Iai", "desc": "Desenfunde rápido que corta el viento. Cooldown: 8s.", "tipo": "activa", "cooldown": 8.0, "adquirida": false},
+	{"id": "paso_rapido", "nombre": "Paso Rápido", "desc": "Esquive veloz con frames de invulnerabilidad. Cooldown: 12s.", "tipo": "activa", "cooldown": 12.0, "adquirida": false},
+	{"id": "hoja_sangrante", "nombre": "Hoja Sangrante", "desc": "Imbuye el arma para aplicar hemorragia por 15s. Cooldown: 20s.", "tipo": "activa", "cooldown": 20.0, "adquirida": false},
+	# --- HABILIDADES TANQUE ---
+	{"id": "pisoton", "nombre": "Pisotón", "desc": "Aumenta el aplomo y remata con un tajo ascendente. Cooldown: 10s.", "tipo": "activa", "cooldown": 10.0, "adquirida": false},
+	{"id": "perseverancia", "nombre": "Perseverancia", "desc": "Aumenta absorción de daño y aplomo drásticamente. Cooldown: 15s.", "tipo": "activa", "cooldown": 15.0, "adquirida": false},
+	{"id": "grito_guerra", "nombre": "Grito de Guerra", "desc": "Grito feroz que aumenta el daño físico por 20s. Cooldown: 25s.", "tipo": "activa", "cooldown": 25.0, "adquirida": false},
+	# --- HABILIDADES MARGINADO ---
+	{"id": "sin_hab_q", "nombre": "Desarmado", "desc": "No posees conocimiento alguno.", "tipo": "activa", "cooldown": 0.0, "adquirida": false},
 ]
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -119,7 +137,9 @@ var can_dash = true
 var dash_direction = Vector3.ZERO
 
 func _ready():
-	if barra_vida: barra_vida.max_value = vida_maxima; barra_vida.value = vida_actual
+	_cargar_modelo_clase() # Inyectamos la lógica aquí primero
+	
+	actualizar_ui_vida()
 	if barra_xp: barra_xp.max_value = xp_necesaria; barra_xp.value = xp_actual
 	actualizar_texto_curaciones()
 	if has_node("HUD/UI_Magia"): actualizar_ui_magia()
@@ -127,28 +147,56 @@ func _ready():
 	for slot in slots_ui:
 		if slot: slot.visible = false
 
+# --- NUEVA FUNCIÓN PARA INYECTAR LA CLASE ---
+func _cargar_modelo_clase():
+	# Apagar todo por defecto
+	if modelo_mago: modelo_mago.visible = false
+	if modelo_caballero: modelo_caballero.visible = false
+	if modelo_tanque: modelo_tanque.visible = false
+
+	# Encender el modelo y enchufar el AnimationPlayer correspondiente
+	match GameManager.clase_seleccionada:
+		"mago":
+			if modelo_mago:
+				modelo_mago.visible = true
+				anim = modelo_mago.get_node("AnimationPlayer")
+				# Cuando le pongas el esqueleto, aquí enlazas el punto de disparo:
+				# punto_disparo = modelo_mago.get_node("Skeleton3D/BoneAttachment3D/PuntoDisparo")
+		"espadachin":
+			if modelo_caballero:
+				modelo_caballero.visible = true
+				anim = modelo_caballero.get_node("AnimationPlayer")
+		"tanque":
+			if modelo_tanque:
+				modelo_tanque.visible = true
+				anim = modelo_tanque.get_node("AnimationPlayer")
+		_:
+			# Default por si le das a F6 directo a la escena de Jugador.tscn
+			if modelo_mago:
+				modelo_mago.visible = true
+				anim = modelo_mago.get_node("AnimationPlayer")
+
+# ==========================================
+# (EL RESTO DEL CÓDIGO)
+# ==========================================
+
 func _physics_process(delta):
-	# 1. ESCUDO CONTRA EL MENÚ DE PAUSA
 	if get_tree().paused: 
 		return
 	
-	# 2. GRAVEDAD
 	if not is_on_floor(): 
 		velocity.y -= gravity * delta
 
-	# 3. EFECTO PRINCESA DEL SOL (Regeneración pasiva)
 	if regeneracion_vida > 0.0 and vida_actual < vida_maxima:
 		vida_actual = min(vida_actual + (regeneracion_vida * delta), vida_maxima)
-		if barra_vida: barra_vida.value = vida_actual
+		actualizar_ui_vida()
 
-	# 4. EFECTO LÁGRIMA ROJA (Modo supervivencia x1.5 de daño)
 	if tiene_lagrima_roja:
 		if vida_actual <= (vida_maxima * 0.2):
 			multiplicador_dano = 1.5 
 		else:
 			multiplicador_dano = 1.0
 
-	# 5. COOLDOWNS DE ACTIVAS Y ANIMACIÓN DE LA UI
 	for i in range(activas_equipadas.size()):
 		if cooldowns_actuales[i] > 0:
 			cooldowns_actuales[i] -= delta
@@ -160,10 +208,8 @@ func _physics_process(delta):
 			if slots_ui[i] and slots_ui[i].has_node("ProgressBar"):
 				slots_ui[i].get_node("ProgressBar").value = 100
 
-	# 6. APUNTADO
 	aim_at_mouse()
 	
-	# 7. PARRY / BLOQUEO
 	if Input.is_action_pressed("bloquear") and not is_dashing:
 		if not esta_bloqueando:
 			esta_bloqueando = true
@@ -175,14 +221,11 @@ func _physics_process(delta):
 		esta_bloqueando = false
 		if escudo_visual: escudo_visual.visible = false
 
-	# 8. INPUTS DE MOVIMIENTO BASE
 	var current_input = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	
-	# 9. ESQUIVE (DASH)
 	if Input.is_action_just_pressed("dash") and can_dash and current_input != Vector2.ZERO and not esta_bloqueando:
 		ejecutar_dash(current_input)
 
-	# 10. ACCIONES BÁSICAS
 	if Input.is_action_just_pressed("disparar") and not esta_bloqueando and not is_dashing and municion_actual > 0 and not esta_recargando:
 		disparar()
 
@@ -192,7 +235,6 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("curar") and not esta_bloqueando and not is_dashing:
 		usar_curacion()
 
-	# 11. LANZAR HABILIDADES ACTIVAS
 	if Input.is_action_just_pressed("habilidad_1") and activas_equipadas.size() > 0:
 		intentar_usar_activa(0)
 	if Input.is_action_just_pressed("habilidad_2") and activas_equipadas.size() > 1:
@@ -200,15 +242,11 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("habilidad_3") and activas_equipadas.size() > 2:
 		intentar_usar_activa(2)
 
-# 12. APLICACIÓN DE VELOCIDAD FÍSICA
 	if is_dashing:
 		velocity.x = dash_direction.x * DASH_SPEED
 		velocity.z = dash_direction.z * DASH_SPEED
 	else:
 		var dir = Vector3(current_input.x, 0, current_input.y).normalized()
-		
-		# Ya quitamos el freno. Ahora puedes correr mientras disparas. 
-		# Solo vas a caminar a la mitad de velocidad si levantas el escudo.
 		var vel = SPEED / 2.0 if esta_bloqueando else SPEED 
 		
 		if dir: 
@@ -218,9 +256,6 @@ func _physics_process(delta):
 			velocity.x = move_toward(velocity.x, 0, vel)
 			velocity.z = move_toward(velocity.z, 0, vel)
 
-	# =================================================================
-	# CONTROLADOR DE ANIMACIONES CON CONDICIONES DE PRIORIDAD
-	# =================================================================
 	if anim:
 		if anim.current_animation == "morir/mixamo_com":
 			pass 
@@ -229,9 +264,6 @@ func _physics_process(delta):
 		elif is_dashing:
 			pass 
 		elif esta_bloqueando:
-			# LA SOLUCIÓN DEL ESCUDO:
-			# assigned_animation recuerda qué animación pediste, aunque ya haya terminado de moverse.
-			# Así levanta el brazo una vez y se queda congelado protegiéndose, sin reiniciarse.
 			if anim.assigned_animation != "bloqueo/mixamo_com":
 				anim.play("bloqueo/mixamo_com")
 		elif velocity.length() > 0.2:
@@ -240,7 +272,6 @@ func _physics_process(delta):
 		else:
 			if anim.current_animation != "idle":
 				anim.play("idle")
-	# =================================================================
 
 	move_and_slide()
 
@@ -258,14 +289,12 @@ func disparar():
 	actualizar_ui_magia()
 	if has_node("SonidoDisparo"): $SonidoDisparo.play()
 	
-	# 1. CÁLCULO DE DAÑO BÁSICO
 	var dano_base_flecha = daño_ataque
 	if proyectiles_extra > 0:
 		dano_base_flecha *= 0.70 
 		
 	var dano_total_calculado = dano_base_flecha * multiplicador_dano
 
-	# 2. BUCLE DE ESCOPETA (Proyectiles Extra)
 	for i in range(proyectiles_extra + 1):
 		var flecha = flecha_scene.instantiate()
 		get_tree().current_scene.add_child(flecha)
@@ -279,14 +308,12 @@ func disparar():
 			var dispersion = randf_range(-0.2, 0.2) 
 			flecha.rotate_y(dispersion)
 		
-		# 3. EL ESLABÓN PERDIDO: INYECTAR LAS STATS A LA MAGIA
 		if "dano" in flecha: flecha.dano = dano_total_calculado
 		elif "cantidad_dano" in flecha: flecha.cantidad_dano = dano_total_calculado
 			
 		if "velocidad" in flecha: flecha.velocidad *= velocidad_disparo
 		elif "speed" in flecha: flecha.speed *= velocidad_disparo
 			
-		# INYECTAR ÁREA Y DURACIÓN (Para cuando hagas granadas o veneno)
 		if "area" in flecha: flecha.area *= modificador_area
 		if "escala_explosion" in flecha: flecha.escala_explosion *= modificador_area
 		if "duracion" in flecha: flecha.duracion *= modificador_duracion
@@ -294,8 +321,6 @@ func disparar():
 	if municion_actual <= 0: 
 		empezar_recarga()
 		
-	# 4. EL COOLDOWN DE DISPARO AFECTADO POR TU ESTADÍSTICA
-	# Entre más "Velocidad de Disparo" compres, menos tiempo esperas para volver a tirar.
 	var tiempo_espera = 0.6 / velocidad_disparo 
 	await get_tree().create_timer(tiempo_espera).timeout
 	puede_disparar = true
@@ -343,13 +368,13 @@ func recibir_dano_jugador(cantidad, atacante = null):
 	dano_final = max(dano_final, 1.0) 
 	
 	vida_actual -= dano_final
-	if barra_vida: barra_vida.value = vida_actual
+	actualizar_ui_vida()
 	
 	if vida_actual <= 0:
 		if revivires_actuales > 0:
 			revivires_actuales -= 1
 			vida_actual = vida_maxima * 0.15
-			if barra_vida: barra_vida.value = vida_actual
+			actualizar_ui_vida()
 			print("🛡️ ¡ANILLO DE SACRIFICIO ROTO! Tienes 2 segundos de inmunidad.")
 			activar_inmunidad_temporal(2.0) 
 			return 
@@ -361,7 +386,7 @@ func sumar_punto():
 	puntaje += 1
 	if tiene_mal_ojo and vida_actual < vida_maxima:
 		vida_actual = min(vida_actual + 2.0, vida_maxima)
-		if barra_vida: barra_vida.value = vida_actual
+		actualizar_ui_vida()
 		print("👁️ Vampirismo: Recuperaste 2 de vida.")
 		
 	if marcador_texto: 
@@ -397,7 +422,7 @@ func usar_curacion():
 	if curaciones_actuales > 0 and vida_actual < vida_maxima and not en_cooldown_curacion:
 		curaciones_actuales -= 1
 		vida_actual = min(vida_actual + cantidad_curacion, vida_maxima)
-		if barra_vida: barra_vida.value = vida_actual
+		actualizar_ui_vida()
 		actualizar_texto_curaciones()
 		iniciar_cooldown_estus()
 
@@ -479,9 +504,7 @@ func abrir_menu_cartas():
 
 func _input(event):
 	if event.is_action_pressed("pausar"):
-		print("🚨 TECLA ESCAPE DETECTADA 🚨") 
 		if (pantalla_derrota and pantalla_derrota.visible) or (pantalla_nivel and pantalla_nivel.visible):
-			print("⚠️ Pausa bloqueada porque hay otro menú abierto.")
 			return 
 		alternar_pausa()
 		
@@ -501,13 +524,11 @@ func aplicar_mejora(indice):
 	if carta_elegida["tipo"] != "estadistica":
 		carta_elegida["adquirida"] = true 
 	
-	print("🔥 ADQUIRISTE: ", carta_elegida["nombre"])
-	
 	match carta_elegida["id"]:
 		"stat_vida":
 			vida_maxima += 10.0
 			vida_actual += 10.0
-			if barra_vida: barra_vida.max_value = vida_maxima; barra_vida.value = vida_actual
+			actualizar_ui_vida()
 		"stat_magia":
 			municion_maxima += 1
 			municion_actual += 1
@@ -552,11 +573,9 @@ func aplicar_mejora(indice):
 
 func intentar_usar_activa(slot):
 	if cooldowns_actuales[slot] > 0:
-		print("Habilidad en recarga! Faltan: ", step_decimals(cooldowns_actuales[slot]), "s")
 		return
 		
 	var habilidad = activas_equipadas[slot]
-	print("Activando: ", habilidad["nombre"])
 	cooldowns_actuales[slot] = habilidad["cooldown"]
 	
 	if habilidad["id"] == "fuerza":
@@ -580,35 +599,27 @@ func alternar_pausa():
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE) 
 
 func actualizar_pantalla_estado():
-	# ==============================
-	# 1. ESTADÍSTICAS DEL JUGADOR
-	# ==============================
 	var texto_atributos = "[b]--- ATRIBUTOS PRINCIPALES ---[/b]\n\n"
 	
-	# Vida
 	var bonus_vida = vida_maxima - VIDA_BASE
 	texto_atributos += "❤️ Vitalidad: " + str(VIDA_BASE)
 	if bonus_vida > 0: texto_atributos += " [color=green](+" + str(bonus_vida) + ")[/color]"
 	texto_atributos += "\n"
 	
-	# Magia (Munición Máxima)
 	var bonus_magia = municion_maxima - MAGIA_BASE
 	texto_atributos += "🔵 Mente (Magia): " + str(MAGIA_BASE)
 	if bonus_magia > 0: texto_atributos += " [color=green](+" + str(bonus_magia) + ")[/color]"
 	texto_atributos += "\n"
 	
-	# Daño
 	var bonus_dano = daño_ataque - DANO_BASE
 	texto_atributos += "⚔️ Fuerza (Daño Base): " + str(DANO_BASE)
 	if bonus_dano > 0: texto_atributos += " [color=green](+" + str(bonus_dano) + ")[/color]"
 	texto_atributos += "\n"
 	
-	# Armadura
 	texto_atributos += "🛡️ Armadura: 0"
 	if armadura > 0: texto_atributos += " [color=green](+" + str(armadura) + ")[/color]"
 	texto_atributos += "\n"
 	
-	# Velocidad
 	var bonus_vel = SPEED - VELOCIDAD_BASE
 	texto_atributos += "👟 Agilidad: " + str(VELOCIDAD_BASE * 10)
 	if bonus_vel > 0.01: texto_atributos += " [color=green](+" + str(snapped(bonus_vel * 10, 0.1)) + ")[/color]"
@@ -657,9 +668,6 @@ func actualizar_pantalla_estado():
 	if texto_stats:
 		texto_stats.text = texto_atributos
 		
-	# ==============================
-	# 2. LISTA DE CARTAS / ANILLOS
-	# ==============================
 	var lista_habilidades = "[b]--- HABILIDADES ACTIVAS ---[/b]\n"
 	if activas_equipadas.size() == 0:
 		lista_habilidades += "- Vacío -\n"
@@ -679,8 +687,6 @@ func actualizar_pantalla_estado():
 		texto_habilidades.text = lista_habilidades
 		
 func morir():
-	print("💀 YOU DIED")
-	
 	if anim: anim.play("morir/mixamo_com")
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
@@ -701,12 +707,22 @@ func activar_inmunidad_temporal(tiempo):
 	await get_tree().create_timer(tiempo).timeout
 	es_invencible = false
 
+func actualizar_ui_vida():
+	# 1. Actualiza la barra gráfica
+	if barra_vida: 
+		barra_vida.max_value = vida_maxima
+		barra_vida.value = vida_actual
+		
+	# 2. Actualiza el texto numérico (usamos round() para no mostrar decimales feos como 99.5)
+	if texto_vida:
+		texto_vida.text = str(round(vida_actual)) + " / " + str(round(vida_maxima))
+
 # --- BOTONES DEL MENÚ ---
 func _on_btn_volver_pressed():
 	alternar_pausa()
 
 func _on_btn_opciones_pressed():
-	print("Abriendo configuración...")
+	pass
 
 func _on_btn_salir_pressed():
 	get_tree().paused = false 

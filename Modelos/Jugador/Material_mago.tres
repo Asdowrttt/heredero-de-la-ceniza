@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cayal5odotxyc"]
+
+[ext_resource type="Texture2D" uid="uid://dvtvlyr7326pb" path="res://Modelos/Jugador/textures/Mage_Base_Color.png" id="1_8qie3"]
+
+[resource]
+albedo_texture = ExtResource("1_8qie3")

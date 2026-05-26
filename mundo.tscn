@@ -38,12 +38,11 @@ use_collision = true
 size = Vector3(30, 1, 30)
 
 [node name="Jugador" parent="." unique_id=331168578 groups=["enemigo"] instance=ExtResource("1_6ba58")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.046452522, 1.5453204, -0.02537918)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.046452522, 0.82195127, -0.02537918)
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1805332923]
 physics_interpolation_mode = 1
-transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0.046452522, 11.5453205, 7.974621)
-top_level = true
+transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 0.046452522, 10.821951, 7.974621)
 current = true
 script = ExtResource("2_2hh7m")
 
@@ -54,7 +53,7 @@ script = ExtResource("3_5ckkb")
 metadata/_custom_type_script = "uid://bd046eokvcnu2"
 
 [node name="PhantomCamera3D" type="Node3D" parent="." unique_id=202134485 node_paths=PackedStringArray("follow_target")]
-transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0.046452522, 11.5453205, 7.974621)
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0.046452522, 10.821951, 7.974621)
 top_level = true
 script = ExtResource("3_aou4a")
 priority = 10
@@ -62,8 +61,6 @@ follow_mode = 2
 follow_target = NodePath("../Jugador")
 tween_resource = SubResource("Resource_2hh7m")
 follow_offset = Vector3(0, 10, 8)
-align_transform_with_view = Callable()
-align_position_with_view = Callable()
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
 [node name="Enemigo" parent="." unique_id=147644729 instance=ExtResource("6_5ckkb")]

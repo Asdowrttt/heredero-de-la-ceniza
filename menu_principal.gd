@@ -8,7 +8,8 @@ func _ready():
 
 func _on_boton_jugar_pressed():
 	# Borramos el menú y cargamos el nivel 3D
-	get_tree().change_scene_to_file("res://mundo.tscn")
+
+		get_tree().change_scene_to_file("res://menu_clases.tscn")
 
 func _on_boton_salir_pressed():
 	# Cerramos el juego por completo
