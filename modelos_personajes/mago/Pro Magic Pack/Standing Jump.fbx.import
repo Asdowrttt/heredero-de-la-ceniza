@@ -1,15 +1,15 @@
 [remap]
 
-importer="scene"
+importer="animation_library"
 importer_version=1
-type="PackedScene"
+type="AnimationLibrary"
 uid="uid://283jax7baosg"
-path="res://.godot/imported/Standing Jump.fbx-cfda4f3d916c7d088f76050c3183c6c4.scn"
+path="res://.godot/imported/Standing Jump.fbx-cfda4f3d916c7d088f76050c3183c6c4.res"
 
 [deps]
 
 source_file="res://modelos_personajes/mago/Pro Magic Pack/Standing Jump.fbx"
-dest_files=["res://.godot/imported/Standing Jump.fbx-cfda4f3d916c7d088f76050c3183c6c4.scn"]
+dest_files=["res://.godot/imported/Standing Jump.fbx-cfda4f3d916c7d088f76050c3183c6c4.res"]
 
 [params]
 

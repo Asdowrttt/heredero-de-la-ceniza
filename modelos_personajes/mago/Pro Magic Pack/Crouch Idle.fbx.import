@@ -1,15 +1,15 @@
 [remap]
 
-importer="scene"
+importer="animation_library"
 importer_version=1
-type="PackedScene"
+type="AnimationLibrary"
 uid="uid://cko51hjtaak88"
-path="res://.godot/imported/Crouch Idle.fbx-1a9575d5f29edb5fca576d63da7da2aa.scn"
+path="res://.godot/imported/Crouch Idle.fbx-1a9575d5f29edb5fca576d63da7da2aa.res"
 
 [deps]
 
 source_file="res://modelos_personajes/mago/Pro Magic Pack/Crouch Idle.fbx"
-dest_files=["res://.godot/imported/Crouch Idle.fbx-1a9575d5f29edb5fca576d63da7da2aa.scn"]
+dest_files=["res://.godot/imported/Crouch Idle.fbx-1a9575d5f29edb5fca576d63da7da2aa.res"]
 
 [params]
 

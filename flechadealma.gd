@@ -10,7 +10,7 @@ func _ready():
 	queue_free() 
 
 func _process(delta):
-	position += transform.basis * Vector3(0, 0, -velocidad * delta)
+	global_position += global_transform.basis * Vector3(0, 0, -velocidad * delta)
 
 func _on_body_entered(body):
 	# Ignoramos al jugador para no suicidarnos

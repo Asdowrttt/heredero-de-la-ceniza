@@ -3,6 +3,10 @@ extends Camera3D
 var intensidad_actual = 0.0
 var tiempo_restante = 0.0
 
+func _exit_tree():
+	h_offset = 0.0
+	v_offset = 0.0
+
 func _process(delta):
 	if tiempo_restante > 0:
 		tiempo_restante -= delta

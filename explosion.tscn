@@ -31,3 +31,4 @@ draw_pass_1 = SubResource("BoxMesh_m5xho")
 stream = ExtResource("2_vxas0")
 volume_db = -5.0
 autoplay = true
+bus = &"SFX"

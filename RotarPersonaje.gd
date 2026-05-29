@@ -4,5 +4,6 @@ extends Node3D
 @export var velocidad_giro : float = 0.5
 
 func _process(delta):
-	# rotate_y hace que gire de izquierda a derecha en el eje Y
+	if get_tree().paused:
+		return
 	rotate_y(velocidad_giro * delta)

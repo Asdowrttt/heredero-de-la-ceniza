@@ -1,15 +1,15 @@
 [remap]
 
-importer="scene"
+importer="animation_library"
 importer_version=1
-type="PackedScene"
+type="AnimationLibrary"
 uid="uid://dbddtyxwcwioc"
-path="res://.godot/imported/Standing React Large From Left.fbx-17cbdc07b82c5d8cc571f45eb8430238.scn"
+path="res://.godot/imported/Standing React Large From Left.fbx-17cbdc07b82c5d8cc571f45eb8430238.res"
 
 [deps]
 
 source_file="res://modelos_personajes/mago/Pro Magic Pack/Standing React Large From Left.fbx"
-dest_files=["res://.godot/imported/Standing React Large From Left.fbx-17cbdc07b82c5d8cc571f45eb8430238.scn"]
+dest_files=["res://.godot/imported/Standing React Large From Left.fbx-17cbdc07b82c5d8cc571f45eb8430238.res"]
 
 [params]
 

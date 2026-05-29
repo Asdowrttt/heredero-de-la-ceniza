@@ -1,15 +1,15 @@
 [remap]
 
-importer="scene"
+importer="animation_library"
 importer_version=1
-type="PackedScene"
+type="AnimationLibrary"
 uid="uid://dc2weyh2kajhy"
-path="res://.godot/imported/Standing Walk Back.fbx-7cc0e3b67746c0dd79271b74da320e8c.scn"
+path="res://.godot/imported/Standing Walk Back.fbx-7cc0e3b67746c0dd79271b74da320e8c.res"
 
 [deps]
 
 source_file="res://modelos_personajes/mago/Pro Magic Pack/Standing Walk Back.fbx"
-dest_files=["res://.godot/imported/Standing Walk Back.fbx-7cc0e3b67746c0dd79271b74da320e8c.scn"]
+dest_files=["res://.godot/imported/Standing Walk Back.fbx-7cc0e3b67746c0dd79271b74da320e8c.res"]
 
 [params]
 

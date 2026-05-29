@@ -1,0 +1,102 @@
+[gd_scene format=3 uid="uid://bqo3vlu8kjcho"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hbse"]
+albedo_color = Color(0.15, 0.12, 0.08, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ghse"]
+albedo_color = Color(0.4, 0.25, 0.1, 1)
+
+[sub_resource type="Gradient" id="Gradient_rdse"]
+colors = PackedColorArray(1, 0.7, 0.1, 1, 1, 0.4, 0.05, 0.8, 1, 0.15, 0, 0)
+offsets = PackedFloat32Array(0, 0.4, 1)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_afse"]
+color_ramp = SubResource("Gradient_rdse")
+direction = Vector3(0, 1, 0)
+spread = 50.0
+initial_velocity_min = 0.8
+initial_velocity_max = 2.5
+scale_min = 0.15
+scale_max = 0.5
+lifetime_randomness = 0.3
+angular_velocity_min = -180.0
+angular_velocity_max = 180.0
+damping = 0.5
+
+[sub_resource type="Gradient" id="Gradient_smse"]
+colors = PackedColorArray(0.5, 0.5, 0.5, 0.4, 0.4, 0.4, 0.4, 0.15, 0.3, 0.3, 0.3, 0)
+offsets = PackedFloat32Array(0, 0.5, 1)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_smoke"]
+color_ramp = SubResource("Gradient_smse")
+direction = Vector3(0, 1, 0)
+spread = 20.0
+initial_velocity_min = 0.5
+initial_velocity_max = 1.5
+scale_min = 0.3
+scale_max = 1.2
+lifetime_randomness = 0.4
+
+[node name="Hoguera" type="Node3D"]
+
+[node name="Base" type="CSGBox3D" parent="."]
+material = SubResource("StandardMaterial3D_hbse")
+use_collision = true
+size = Vector3(2.5, 0.4, 2.5)
+position = Vector3(0, 0.2, 0)
+
+[node name="Logs" type="Node3D" parent="."]
+
+[node name="Log1" type="CSGBox3D" parent="Logs"]
+material = SubResource("StandardMaterial3D_ghse")
+size = Vector3(0.2, 0.15, 1.2)
+position = Vector3(-0.3, 0.35, -0.1)
+rotation = Vector3(0.3, 0.2, 0.5)
+
+[node name="Log2" type="CSGBox3D" parent="Logs"]
+material = SubResource("StandardMaterial3D_ghse")
+size = Vector3(0.2, 0.15, 1.2)
+position = Vector3(0.3, 0.3, 0.2)
+rotation = Vector3(-0.2, -0.3, 0.6)
+
+[node name="Log3" type="CSGBox3D" parent="Logs"]
+material = SubResource("StandardMaterial3D_ghse")
+size = Vector3(0.15, 0.12, 1.0)
+position = Vector3(0.1, 0.4, -0.3)
+rotation = Vector3(0.5, 0.8, 0.3)
+
+[node name="Log4" type="CSGBox3D" parent="Logs"]
+material = SubResource("StandardMaterial3D_ghse")
+size = Vector3(0.15, 0.12, 1.0)
+position = Vector3(-0.1, 0.28, 0.35)
+rotation = Vector3(-0.4, -0.6, 0.4)
+
+[node name="Log5" type="CSGBox3D" parent="Logs"]
+material = SubResource("StandardMaterial3D_ghse")
+size = Vector3(0.15, 0.12, 0.8)
+position = Vector3(0.0, 0.5, 0.0)
+rotation = Vector3(0.8, 0.0, 0.0)
+
+[node name="FireLight" type="OmniLight3D" parent="."]
+light_color = Color(1, 0.5, 0.1, 1)
+light_energy = 3.0
+omni_range = 12.0
+position = Vector3(0, 1.2, 0)
+
+[node name="FireParticles" type="GPUParticles3D" parent="."]
+emitting = true
+amount = 40
+lifetime = 0.8
+one_shot = false
+preprocess = 0.5
+process_material = SubResource("ParticleProcessMaterial_afse")
+position = Vector3(0, 0.6, 0)
+
+[node name="SmokeParticles" type="GPUParticles3D" parent="."]
+emitting = true
+amount = 15
+lifetime = 2.0
+one_shot = false
+preprocess = 1.0
+process_material = SubResource("ParticleProcessMaterial_smoke")
+position = Vector3(0, 1.0, 0)

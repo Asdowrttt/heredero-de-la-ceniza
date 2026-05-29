@@ -1,15 +1,15 @@
 [remap]
 
-importer="scene"
+importer="animation_library"
 importer_version=1
-type="PackedScene"
+type="AnimationLibrary"
 uid="uid://d26y42s61up8v"
-path="res://.godot/imported/Crouch Turn Right 90.fbx-e78bee86aa3fc9faae64700aaea36ca6.scn"
+path="res://.godot/imported/Crouch Turn Right 90.fbx-e78bee86aa3fc9faae64700aaea36ca6.res"
 
 [deps]
 
 source_file="res://modelos_personajes/mago/Pro Magic Pack/Crouch Turn Right 90.fbx"
-dest_files=["res://.godot/imported/Crouch Turn Right 90.fbx-e78bee86aa3fc9faae64700aaea36ca6.scn"]
+dest_files=["res://.godot/imported/Crouch Turn Right 90.fbx-e78bee86aa3fc9faae64700aaea36ca6.res"]
 
 [params]
 

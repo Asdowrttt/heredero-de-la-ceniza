@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://cqhmocxeoailp"]
+
+[ext_resource type="Script" uid="uid://b1e7sfhilsnxp" path="res://enemigo_mago.gd" id="1_3lgsq"]
+[ext_resource type="PackedScene" uid="uid://dr433ykxu3ruh" path="res://modelos_personajes/mago/Pro Magic Pack/Magician.fbx" id="2_pqa4x"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qbd7b"]
+radius = 0.35
+height = 1.8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3kd25"]
+bg_color = Color(1, 0.019607844, 0.019607844, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pqu07"]
+bg_color = Color(0.007843138, 0.03137255, 0, 1)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_wa7o2"]
+viewport_path = NodePath("MiniPantalla")
+
+[node name="EnemigoMago" type="CharacterBody3D" unique_id=985413474]
+script = ExtResource("1_3lgsq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1445159546]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_qbd7b")
+
+[node name="MiniPantalla" type="SubViewport" parent="." unique_id=417020817]
+transparent_bg = true
+size = Vector2i(200, 180)
+
+[node name="BarraVidaEnemigo" type="ProgressBar" parent="MiniPantalla" unique_id=958807525]
+offset_right = 200.0
+offset_bottom = 30.0
+theme_override_styles/background = SubResource("StyleBoxFlat_3kd25")
+theme_override_styles/fill = SubResource("StyleBoxFlat_pqu07")
+show_percentage = false
+
+[node name="EtiquetaVida" type="Label" parent="MiniPantalla" unique_id=1047048980]
+offset_right = 200.0
+offset_bottom = 30.0
+theme_override_colors/font_color = Color(0.85, 0.8, 0.6, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.8)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 14
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HologramaVida" type="Sprite3D" parent="." unique_id=679845008]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+billboard = 1
+texture = SubResource("ViewportTexture_wa7o2")
+
+[node name="PuntoDisparo" type="Marker3D" parent="." unique_id=1058298976]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8, 1.4, -1.2)
+
+[node name="Magician" parent="." unique_id=1609368531 instance=ExtResource("2_pqa4x")]
+transform = Transform3D(0.55, 0, 0, 0, 0.55, 0, 0, 0, 0.55, 0, 0.4059584, 0)

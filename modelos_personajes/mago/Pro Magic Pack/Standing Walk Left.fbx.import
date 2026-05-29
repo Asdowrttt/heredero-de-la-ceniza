@@ -1,15 +1,15 @@
 [remap]
 
-importer="scene"
+importer="animation_library"
 importer_version=1
-type="PackedScene"
+type="AnimationLibrary"
 uid="uid://bs5gdsqmmb1p5"
-path="res://.godot/imported/Standing Walk Left.fbx-e3f801af04a72daff9835f4c0b70474b.scn"
+path="res://.godot/imported/Standing Walk Left.fbx-e3f801af04a72daff9835f4c0b70474b.res"
 
 [deps]
 
 source_file="res://modelos_personajes/mago/Pro Magic Pack/Standing Walk Left.fbx"
-dest_files=["res://.godot/imported/Standing Walk Left.fbx-e3f801af04a72daff9835f4c0b70474b.scn"]
+dest_files=["res://.godot/imported/Standing Walk Left.fbx-e3f801af04a72daff9835f4c0b70474b.res"]
 
 [params]
 

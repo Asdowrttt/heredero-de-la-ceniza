@@ -18,6 +18,17 @@ extends Control
 @onready var modelo_caballero: Node3D = $MarginContainer/HBoxContainer/SeccionCentral/Contenedor3D/Pantalla3D/Mundo3D/ModeloCaballero
 @onready var modelo_tanque: Node3D = $MarginContainer/HBoxContainer/SeccionCentral/Contenedor3D/Pantalla3D/Mundo3D/ModeloTanque
 
+@onready var contenedor_3d = $MarginContainer/HBoxContainer/SeccionCentral/Contenedor3D
+@onready var boton_jugar = $MarginContainer/HBoxContainer/PanelDerecho/Button
+@onready var botones_clase = [
+	$MarginContainer/HBoxContainer/MenuIzquierdo/BotonMago,
+	$MarginContainer/HBoxContainer/MenuIzquierdo/BotonEspadachin,
+	$MarginContainer/HBoxContainer/MenuIzquierdo/BotonTanque,
+	$MarginContainer/HBoxContainer/MenuIzquierdo/BotonMarginado,
+]
+
+var clase_activa = "mago"
+
 var datos_clases = {
 	"mago": {
 		"nombre": "El Erudito",
@@ -62,10 +73,85 @@ var datos_clases = {
 }
 
 func _ready():
+	Global.play_menu_music()
+	_aplicar_estilo_ds()
 	mostrar_clase("mago")
+	_crear_descripciones_habilidades()
+
+func _aplicar_estilo_ds():
+	var fondo_btn = StyleBoxFlat.new()
+	fondo_btn.bg_color = Color(0.08, 0.06, 0.05, 1)
+	fondo_btn.border_color = Color(0.5, 0.4, 0.15, 1)
+	fondo_btn.set_border_width_all(2)
+	fondo_btn.border_blend = true
+	fondo_btn.set_corner_radius_all(2)
+	
+	var hover_btn = StyleBoxFlat.new()
+	hover_btn.bg_color = Color(0.12, 0.09, 0.07, 1)
+	hover_btn.border_color = Color(0.7, 0.55, 0.2, 1)
+	hover_btn.set_border_width_all(2)
+	hover_btn.border_blend = true
+	hover_btn.set_corner_radius_all(2)
+	
+	var press_btn = StyleBoxFlat.new()
+	press_btn.bg_color = Color(0.15, 0.11, 0.08, 1)
+	press_btn.border_color = Color(0.9, 0.7, 0.25, 1)
+	press_btn.set_border_width_all(2)
+	press_btn.border_blend = true
+	press_btn.set_corner_radius_all(2)
+	
+	var botones = [$MarginContainer/HBoxContainer/MenuIzquierdo/BotonMago,
+		$MarginContainer/HBoxContainer/MenuIzquierdo/BotonEspadachin,
+		$MarginContainer/HBoxContainer/MenuIzquierdo/BotonTanque,
+		$MarginContainer/HBoxContainer/MenuIzquierdo/BotonMarginado]
+	
+	for btn in botones:
+		btn.add_theme_font_size_override("font_size", 20)
+		btn.add_theme_color_override("font_color", Color(0.85, 0.8, 0.7, 1))
+		btn.add_theme_color_override("font_hover_color", Color(1, 1, 0.95, 1))
+		btn.add_theme_stylebox_override("normal", fondo_btn)
+		btn.add_theme_stylebox_override("hover", hover_btn)
+		btn.add_theme_stylebox_override("pressed", press_btn)
+		btn.custom_minimum_size = Vector2(200, 50)
+	
+	if boton_jugar:
+		boton_jugar.add_theme_font_size_override("font_size", 22)
+		boton_jugar.add_theme_color_override("font_color", Color(0.85, 0.8, 0.7, 1))
+		boton_jugar.add_theme_color_override("font_hover_color", Color(1, 1, 0.95, 1))
+		boton_jugar.add_theme_stylebox_override("normal", fondo_btn)
+		boton_jugar.add_theme_stylebox_override("hover", hover_btn)
+		boton_jugar.add_theme_stylebox_override("pressed", press_btn)
+		boton_jugar.custom_minimum_size = Vector2(250, 60)
+		boton_jugar.text = "JUGAR"
+	
+	if contenedor_3d:
+		var borde_3d = StyleBoxFlat.new()
+		borde_3d.bg_color = Color(0, 0, 0, 0)
+		borde_3d.border_color = Color(0.5, 0.4, 0.15, 1)
+		borde_3d.set_border_width_all(2)
+		borde_3d.border_blend = true
+		contenedor_3d.add_theme_stylebox_override("panel", borde_3d)
+
+var labels_habilidades = []
+
+func _crear_descripciones_habilidades():
+	var panel = $MarginContainer/HBoxContainer/PanelDerecho
+	var idx_btn = boton_jugar.get_index()
+	
+	for i in range(3):
+		var lbl = Label.new()
+		lbl.name = "Habilidad" + str(i)
+		lbl.add_theme_color_override("font_color", Color(0.75, 0.7, 0.58, 1))
+		lbl.add_theme_font_size_override("font_size", 13)
+		lbl.autowrap_mode = 1
+		lbl.text = ""
+		panel.add_child(lbl)
+		panel.move_child(lbl, idx_btn + i)
+		labels_habilidades.append(lbl)
 
 func mostrar_clase(id_clase):
 	var datos = datos_clases[id_clase]
+	clase_activa = id_clase
 	
 	titulo_clase.text = datos["nombre"]
 	valor_vida.text = str(datos["vida"])
@@ -78,12 +164,15 @@ func mostrar_clase(id_clase):
 	nombre_objeto.text = datos["obj_nom"]
 	desc_objeto.text = datos["obj_desc"]
 	
-	# 1. Ocultar todos los modelos por defecto
+	if labels_habilidades.size() >= 3:
+		labels_habilidades[0].text = datos.get("hab_q", "")
+		labels_habilidades[1].text = datos.get("hab_f", "")
+		labels_habilidades[2].text = datos.get("hab_c", "")
+	
 	if modelo_mago: modelo_mago.visible = false
 	if modelo_caballero: modelo_caballero.visible = false
 	if modelo_tanque: modelo_tanque.visible = false
-
-	# 2. Activar la visibilidad del modelo seleccionado
+	
 	match id_clase:
 		"mago":
 			if modelo_mago: modelo_mago.visible = true
@@ -91,10 +180,27 @@ func mostrar_clase(id_clase):
 			if modelo_caballero: modelo_caballero.visible = true
 		"tanque":
 			if modelo_tanque: modelo_tanque.visible = true
-
-	# 3. Registrar la selección en la memoria persistente
+	
 	GameManager.clase_seleccionada = id_clase
+	
+	_resaltar_selector_clase(id_clase)
 
+func _resaltar_selector_clase(id_clase):
+	var colores = {
+		"mago": botones_clase[0],
+		"espadachin": botones_clase[1],
+		"tanque": botones_clase[2],
+		"marginado": botones_clase[3],
+	}
+	
+	for btn in botones_clase:
+		btn.remove_theme_color_override("font_color")
+		btn.add_theme_color_override("font_color", Color(0.65, 0.6, 0.5, 1))
+	
+	var activo = colores.get(id_clase)
+	if activo:
+		activo.add_theme_color_override("font_color", Color(1, 0.95, 0.85, 1))
+		activo.add_theme_color_override("font_hover_color", Color(1, 1, 0.95, 1))
 
 # --- SEÑALES DE BOTONES DE CLASE ---
 func _on_boton_mago_pressed():
@@ -109,18 +215,16 @@ func _on_boton_tanque_pressed():
 func _on_boton_marginado_pressed():
 	mostrar_clase("marginado")
 
-
 # --- TRANSICIÓN AL JUEGO ---
 func _on_boton_jugar_pressed():
-	# Validación para asegurar que existe un dato en el Singleton
+	if not Engine.has_singleton("GameManager"):
+		print("Error: GameManager no encontrado")
+		return
 	if GameManager.clase_seleccionada == "":
 		print("Error del sistema: No se ha seleccionado una clase.")
 		return
 		
-	# Descarga la interfaz actual y carga el nivel tridimensional en memoria.
-	# Modifica el parámetro con la ruta absoluta de tu escena de nivel.
 	get_tree().change_scene_to_file("res://mundo.tscn")
-
 
 func _on_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://mundo.tscn")

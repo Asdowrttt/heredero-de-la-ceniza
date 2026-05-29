@@ -1,15 +1,15 @@
 [remap]
 
-importer="scene"
+importer="animation_library"
 importer_version=1
-type="PackedScene"
+type="AnimationLibrary"
 uid="uid://c4qxm5prkuw43"
-path="res://.godot/imported/Standing Block React Large.fbx-5937b295cc80618592fa5cdcc44ad22a.scn"
+path="res://.godot/imported/Standing Block React Large.fbx-5937b295cc80618592fa5cdcc44ad22a.res"
 
 [deps]
 
 source_file="res://modelos_personajes/mago/Pro Magic Pack/Standing Block React Large.fbx"
-dest_files=["res://.godot/imported/Standing Block React Large.fbx-5937b295cc80618592fa5cdcc44ad22a.scn"]
+dest_files=["res://.godot/imported/Standing Block React Large.fbx-5937b295cc80618592fa5cdcc44ad22a.res"]
 
 [params]
 

@@ -1,15 +1,15 @@
 [remap]
 
-importer="scene"
+importer="animation_library"
 importer_version=1
-type="PackedScene"
+type="AnimationLibrary"
 uid="uid://s1g8wlcgnbkw"
-path="res://.godot/imported/Standing Idle 03.fbx-d01c727d86edc7318ef798e732d5a301.scn"
+path="res://.godot/imported/Standing Idle 03.fbx-d01c727d86edc7318ef798e732d5a301.res"
 
 [deps]
 
 source_file="res://modelos_personajes/mago/Pro Magic Pack/Standing Idle 03.fbx"
-dest_files=["res://.godot/imported/Standing Idle 03.fbx-d01c727d86edc7318ef798e732d5a301.scn"]
+dest_files=["res://.godot/imported/Standing Idle 03.fbx-d01c727d86edc7318ef798e732d5a301.res"]
 
 [params]
 

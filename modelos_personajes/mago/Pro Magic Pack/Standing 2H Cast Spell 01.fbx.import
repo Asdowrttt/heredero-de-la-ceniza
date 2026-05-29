@@ -1,15 +1,15 @@
 [remap]
 
-importer="scene"
+importer="animation_library"
 importer_version=1
-type="PackedScene"
+type="AnimationLibrary"
 uid="uid://mphn1ckvs0r2"
-path="res://.godot/imported/Standing 2H Cast Spell 01.fbx-2935b72ad78d3da9242f687c041c1b79.scn"
+path="res://.godot/imported/Standing 2H Cast Spell 01.fbx-2935b72ad78d3da9242f687c041c1b79.res"
 
 [deps]
 
 source_file="res://modelos_personajes/mago/Pro Magic Pack/Standing 2H Cast Spell 01.fbx"
-dest_files=["res://.godot/imported/Standing 2H Cast Spell 01.fbx-2935b72ad78d3da9242f687c041c1b79.scn"]
+dest_files=["res://.godot/imported/Standing 2H Cast Spell 01.fbx-2935b72ad78d3da9242f687c041c1b79.res"]
 
 [params]
 

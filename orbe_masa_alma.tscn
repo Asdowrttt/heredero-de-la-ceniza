@@ -1,0 +1,29 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://orbe_masa_alma.gd" id="1_orb"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_orb"]
+radius = 0.25
+radial_segments = 12
+rings = 8
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_orb"]
+radius = 0.3
+
+[node name="OrbeMasaAlma" type="Area3D" unique_id=5000001]
+monitoring = true
+script = ExtResource("1_orb")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=5000002]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+mesh = SubResource("SphereMesh_orb")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=5000003]
+shape = SubResource("SphereShape3D_orb")
+
+[node name="PointLight3D" type="PointLight3D" parent="." unique_id=5000004]
+light_color = Color(0.5, 0.7, 1, 1)
+intensity = 150.0
+range = 5.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

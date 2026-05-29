@@ -1,15 +1,15 @@
 [remap]
 
-importer="scene"
+importer="animation_library"
 importer_version=1
-type="PackedScene"
+type="AnimationLibrary"
 uid="uid://82msa2snweuk"
-path="res://.godot/imported/Standing Sprint Forward.fbx-c427a0d13e7108d2381a6d28cf46aad3.scn"
+path="res://.godot/imported/Standing Sprint Forward.fbx-c427a0d13e7108d2381a6d28cf46aad3.res"
 
 [deps]
 
 source_file="res://modelos_personajes/mago/Pro Magic Pack/Standing Sprint Forward.fbx"
-dest_files=["res://.godot/imported/Standing Sprint Forward.fbx-c427a0d13e7108d2381a6d28cf46aad3.scn"]
+dest_files=["res://.godot/imported/Standing Sprint Forward.fbx-c427a0d13e7108d2381a6d28cf46aad3.res"]
 
 [params]
 

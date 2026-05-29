@@ -1,15 +1,15 @@
 [remap]
 
-importer="scene"
+importer="animation_library"
 importer_version=1
-type="PackedScene"
+type="AnimationLibrary"
 uid="uid://ev3xiv4kg65x"
-path="res://.godot/imported/Standing Block Start.fbx-f39733fcd5b309b0d10c101c11a80fb4.scn"
+path="res://.godot/imported/Standing Block Start.fbx-f39733fcd5b309b0d10c101c11a80fb4.res"
 
 [deps]
 
 source_file="res://modelos_personajes/mago/Pro Magic Pack/Standing Block Start.fbx"
-dest_files=["res://.godot/imported/Standing Block Start.fbx-f39733fcd5b309b0d10c101c11a80fb4.scn"]
+dest_files=["res://.godot/imported/Standing Block Start.fbx-f39733fcd5b309b0d10c101c11a80fb4.res"]
 
 [params]
 

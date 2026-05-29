@@ -1,15 +1,15 @@
 [remap]
 
-importer="scene"
+importer="animation_library"
 importer_version=1
-type="PackedScene"
+type="AnimationLibrary"
 uid="uid://c5iynt1a374ix"
-path="res://.godot/imported/idle.fbx-05e2ec5caae485cc2bee4325adaecc6e.scn"
+path="res://.godot/imported/idle.fbx-05e2ec5caae485cc2bee4325adaecc6e.res"
 
 [deps]
 
 source_file="res://modelos_personajes/mago/Pro Magic Pack/idle.fbx"
-dest_files=["res://.godot/imported/idle.fbx-05e2ec5caae485cc2bee4325adaecc6e.scn"]
+dest_files=["res://.godot/imported/idle.fbx-05e2ec5caae485cc2bee4325adaecc6e.res"]
 
 [params]
 

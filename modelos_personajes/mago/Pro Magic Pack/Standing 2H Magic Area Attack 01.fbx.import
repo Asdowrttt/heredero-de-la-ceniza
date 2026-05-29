@@ -1,15 +1,15 @@
 [remap]
 
-importer="scene"
+importer="animation_library"
 importer_version=1
-type="PackedScene"
+type="AnimationLibrary"
 uid="uid://c6g1p1ud2f2nv"
-path="res://.godot/imported/Standing 2H Magic Area Attack 01.fbx-532286d1558737a959fd63ee740bb10c.scn"
+path="res://.godot/imported/Standing 2H Magic Area Attack 01.fbx-532286d1558737a959fd63ee740bb10c.res"
 
 [deps]
 
 source_file="res://modelos_personajes/mago/Pro Magic Pack/Standing 2H Magic Area Attack 01.fbx"
-dest_files=["res://.godot/imported/Standing 2H Magic Area Attack 01.fbx-532286d1558737a959fd63ee740bb10c.scn"]
+dest_files=["res://.godot/imported/Standing 2H Magic Area Attack 01.fbx-532286d1558737a959fd63ee740bb10c.res"]
 
 [params]
 

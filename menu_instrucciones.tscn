@@ -1,0 +1,179 @@
+[gd_scene format=3 uid="uid://instrucciones_menu"]
+
+[ext_resource type="Script" path="res://menu_instrucciones.gd" id="1_script"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_normal"]
+bg_color = Color(0.05, 0.05, 0.05, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hover"]
+bg_color = Color(0.6, 0.4, 0.1, 0.15)
+border_color = Color(0.8, 0.6, 0.2, 0.8)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pressed"]
+bg_color = Color(0.8, 0.6, 0.2, 0.2)
+
+[node name="MenuInstrucciones" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="FondoOscuro" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.03, 0.03, 0.05, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = -350.0
+offset_right = 400.0
+offset_bottom = 350.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+theme_override_constants/separation = 20
+
+[node name="Titulo" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.75, 0.3, 1)
+theme_override_font_sizes/font_size = 48
+text = "INSTRUCCIONES"
+horizontal_alignment = 1
+
+[node name="Separador1" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="ControlesMovimiento" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="MovimientoTitulo" type="Label" parent="VBoxContainer/ControlesMovimiento"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.65, 0.25, 1)
+theme_override_font_sizes/font_size = 28
+text = "MOVIMIENTO"
+
+[node name="WASD" type="Label" parent="VBoxContainer/ControlesMovimiento"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.8, 0.75, 1)
+theme_override_font_sizes/font_size = 22
+text = "W, A, S, D - Desplazamiento"
+
+[node name="Dash" type="Label" parent="VBoxContainer/ControlesMovimiento"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.8, 0.75, 1)
+theme_override_font_sizes/font_size = 22
+text = "SHIFT - Esquivar/Dash"
+
+[node name="Separador2" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="ControlesCombate" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="CombateTitulo" type="Label" parent="VBoxContainer/ControlesCombate"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.65, 0.25, 1)
+theme_override_font_sizes/font_size = 28
+text = "COMBATE"
+
+[node name="Disparar" type="Label" parent="VBoxContainer/ControlesCombate"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.8, 0.75, 1)
+theme_override_font_sizes/font_size = 22
+text = "CLICK IZQUIERDO - Atacar"
+
+[node name="Bloquear" type="Label" parent="VBoxContainer/ControlesCombate"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.8, 0.75, 1)
+theme_override_font_sizes/font_size = 22
+text = "CLICK DERECHO - Bloquear"
+
+[node name="Recargar" type="Label" parent="VBoxContainer/ControlesCombate"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.8, 0.75, 1)
+theme_override_font_sizes/font_size = 22
+text = "R - Recargar"
+
+[node name="Separador3" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="ControlesHabilidades" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="HabilidadesTitulo" type="Label" parent="VBoxContainer/ControlesHabilidades"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.65, 0.25, 1)
+theme_override_font_sizes/font_size = 28
+text = "HABILIDADES"
+
+[node name="Curar" type="Label" parent="VBoxContainer/ControlesHabilidades"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.8, 0.75, 1)
+theme_override_font_sizes/font_size = 22
+text = "E - Curar"
+
+[node name="Habilidad1" type="Label" parent="VBoxContainer/ControlesHabilidades"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.8, 0.75, 1)
+theme_override_font_sizes/font_size = 22
+text = "Q - Habilidad 1"
+
+[node name="Habilidad2" type="Label" parent="VBoxContainer/ControlesHabilidades"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.8, 0.75, 1)
+theme_override_font_sizes/font_size = 22
+text = "F - Habilidad 2"
+
+[node name="Habilidad3" type="Label" parent="VBoxContainer/ControlesHabilidades"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.8, 0.75, 1)
+theme_override_font_sizes/font_size = 22
+text = "C - Habilidad 3"
+
+[node name="Cartas" type="Label" parent="VBoxContainer/ControlesHabilidades"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.8, 0.75, 1)
+theme_override_font_sizes/font_size = 22
+text = "1, 2, 3 - Seleccionar Cartas"
+
+[node name="Separador4" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Pausa" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.55, 0.2, 1)
+theme_override_font_sizes/font_size = 20
+text = "ESC - Pausar"
+horizontal_alignment = 1
+
+[node name="BotonRegresar" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(200, 60)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.7, 0.25, 1)
+theme_override_font_sizes/font_size = 26
+theme_override_styles/normal = SubResource("StyleBoxFlat_normal")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hover")
+text = "REGRESAR"
+
+[connection signal="pressed" from="VBoxContainer/BotonRegresar" to="." method="_on_boton_regresar_pressed"]

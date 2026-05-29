@@ -1,15 +1,15 @@
 [remap]
 
-importer="scene"
+importer="animation_library"
 importer_version=1
-type="PackedScene"
+type="AnimationLibrary"
 uid="uid://c8kaqpcmu4wv7"
-path="res://.godot/imported/Standing React Small From Right.fbx-fbbecccaa4dcb4cd2e1324768023dfda.scn"
+path="res://.godot/imported/Standing React Small From Right.fbx-fbbecccaa4dcb4cd2e1324768023dfda.res"
 
 [deps]
 
 source_file="res://modelos_personajes/mago/Pro Magic Pack/Standing React Small From Right.fbx"
-dest_files=["res://.godot/imported/Standing React Small From Right.fbx-fbbecccaa4dcb4cd2e1324768023dfda.scn"]
+dest_files=["res://.godot/imported/Standing React Small From Right.fbx-fbbecccaa4dcb4cd2e1324768023dfda.res"]
 
 [params]
 

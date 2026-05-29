@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://b6hnacdm0dxrw"]
+
+[sub_resource type="Gradient" id="Gradient_tyui"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.6, 1, 1, 1, 0)
+offsets = PackedFloat32Array(0, 0.5, 1)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tyui"]
+color_ramp = SubResource("Gradient_tyui")
+direction = Vector3(0, 0, -1)
+spread = 100.0
+initial_velocity_min = 6.0
+initial_velocity_max = 14.0
+scale_min = 0.2
+scale_max = 0.6
+lifetime_randomness = 0.2
+angular_velocity_min = -360.0
+angular_velocity_max = 360.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tyui"]
+vertex_color_use_as_albedo = true
+shading_mode = 0
+
+[sub_resource type="QuadMesh" id="QuadMesh_tyui"]
+size = Vector2(0.3, 0.3)
+material = SubResource("StandardMaterial3D_tyui")
+
+[node name="GolpeVisual" type="GPUParticles3D"]
+emitting = false
+amount = 25
+lifetime = 0.4
+one_shot = true
+fixed_fps = 0
+process_material = SubResource("ParticleProcessMaterial_tyui")
+draw_pass_1 = SubResource("QuadMesh_tyui")

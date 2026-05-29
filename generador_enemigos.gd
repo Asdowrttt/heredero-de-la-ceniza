@@ -30,11 +30,10 @@ func _on_timer_timeout():
 
 	var nuevo_enemigo = enemigo_scene.instantiate()
 	nuevo_enemigo.global_position = nueva_posicion
-	add_child(nuevo_enemigo)
+	add_child.call_deferred(nuevo_enemigo)
 
 func aumentar_dificultad():
 	# Si el reloj tarda más de medio segundo, lo podemos hacer más rápido
-	if reloj.wait_time > 0.5:
-		# Le restamos 0.2 segundos al tiempo de espera
-		reloj.wait_time -= 0.2
+	if reloj.wait_time > 0.8:
+		reloj.wait_time = max(reloj.wait_time - 0.2, 0.5)
 		print("¡Se enojaron! Nuevo tiempo de spawn: ", reloj.wait_time)

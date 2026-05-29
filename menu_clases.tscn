@@ -2454,6 +2454,11 @@ size_flags_horizontal = 3
 
 [node name="TituloClase" type="Label" parent="MarginContainer/HBoxContainer/SeccionCentral" unique_id=733971660]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.88, 0.72, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.9)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 42
 text = "Clase"
 horizontal_alignment = 1
 
@@ -3934,45 +3939,67 @@ autoplay = &"great sword idle (5)/mixamo_com"
 
 [node name="TablaAtributos" type="GridContainer" parent="MarginContainer/HBoxContainer/SeccionCentral" unique_id=909026689]
 layout_mode = 2
+theme_override_constants/v_separation = 4
+theme_override_constants/h_separation = 30
 
 [node name="Label" type="Label" parent="MarginContainer/HBoxContainer/SeccionCentral/TablaAtributos" unique_id=1890837781]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.75, 0.65, 1)
+theme_override_font_sizes/font_size = 18
 text = "Vitalidad"
 
 [node name="ValorVitalidad" type="Label" parent="MarginContainer/HBoxContainer/SeccionCentral/TablaAtributos" unique_id=1729669682]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.88, 0.72, 1)
+theme_override_font_sizes/font_size = 18
 text = "10"
 
 [node name="Label3" type="Label" parent="MarginContainer/HBoxContainer/SeccionCentral/TablaAtributos" unique_id=2060258940]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.75, 0.65, 1)
+theme_override_font_sizes/font_size = 18
 text = "Magia"
 
 [node name="ValorMagia" type="Label" parent="MarginContainer/HBoxContainer/SeccionCentral/TablaAtributos" unique_id=499043145]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.88, 0.72, 1)
+theme_override_font_sizes/font_size = 18
 text = "10"
 
 [node name="Label5" type="Label" parent="MarginContainer/HBoxContainer/SeccionCentral/TablaAtributos" unique_id=399074095]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.75, 0.65, 1)
+theme_override_font_sizes/font_size = 18
 text = "Velocidad"
 
 [node name="ValorVelocidad" type="Label" parent="MarginContainer/HBoxContainer/SeccionCentral/TablaAtributos" unique_id=324295141]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.88, 0.72, 1)
+theme_override_font_sizes/font_size = 18
 text = "10"
 
 [node name="Label7" type="Label" parent="MarginContainer/HBoxContainer/SeccionCentral/TablaAtributos" unique_id=1415024962]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.75, 0.65, 1)
+theme_override_font_sizes/font_size = 18
 text = "Armadura"
 
 [node name="ValorArmadura" type="Label" parent="MarginContainer/HBoxContainer/SeccionCentral/TablaAtributos" unique_id=467742412]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.88, 0.72, 1)
+theme_override_font_sizes/font_size = 18
 text = "10"
 
 [node name="Label9" type="Label" parent="MarginContainer/HBoxContainer/SeccionCentral/TablaAtributos" unique_id=1047351772]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.75, 0.65, 1)
+theme_override_font_sizes/font_size = 18
 text = "Fuerza"
 
 [node name="ValorFuerza" type="Label" parent="MarginContainer/HBoxContainer/SeccionCentral/TablaAtributos" unique_id=166874324]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.88, 0.72, 1)
+theme_override_font_sizes/font_size = 18
 text = "10"
 
 [node name="PanelDerecho" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=1821366452]
@@ -3982,23 +4009,34 @@ size_flags_stretch_ratio = 0.5
 
 [node name="SubtituloArma" type="Label" parent="MarginContainer/HBoxContainer/PanelDerecho" unique_id=1652881759]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.65, 0.55, 1)
+theme_override_font_sizes/font_size = 14
 text = "ARMA INICIAL"
 
 [node name="NombreArma" type="Label" parent="MarginContainer/HBoxContainer/PanelDerecho" unique_id=1340852895]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.88, 0.72, 1)
+theme_override_font_sizes/font_size = 22
 
 [node name="Label3" type="Label" parent="MarginContainer/HBoxContainer/PanelDerecho" unique_id=1243325421]
 layout_mode = 2
 
 [node name="SubtituloObjeto" type="Label" parent="MarginContainer/HBoxContainer/PanelDerecho" unique_id=2014942641]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.65, 0.55, 1)
+theme_override_font_sizes/font_size = 14
 text = "OBJETO INICIAL"
 
 [node name="NombreObjeto" type="Label" parent="MarginContainer/HBoxContainer/PanelDerecho" unique_id=730966609]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.92, 0.88, 0.78, 1)
+theme_override_font_sizes/font_size = 18
 
 [node name="DescObjeto" type="Label" parent="MarginContainer/HBoxContainer/PanelDerecho" unique_id=1853926669]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.75, 0.65, 1)
+theme_override_font_sizes/font_size = 14
+autowrap_mode = 2
 
 [node name="Button" type="Button" parent="MarginContainer/HBoxContainer/PanelDerecho" unique_id=787498859]
 layout_mode = 2
